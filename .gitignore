@@ -1,55 +1,36 @@
-# IDE dirs and files
-.idea
+# Virtual environments
+.venv/
+venv/
+env/
 
-# Byte-compiled / optimized / DLL files
-.pytest_cache/
+# Python
 __pycache__/
 *.py[cod]
-
-# C extensions
-*.so
-
-# Distribution / packaging
-bin/
-build/
-develop-eggs/
-dist/
-eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 *.egg-info/
-.installed.cfg
+build/
+dist/
 *.egg
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+# uv
+# Keep uv.lock committed (it is a lockfile) — do NOT ignore it
 
-# Unit tests / coverage reports
-.tox/
+# Testing / tooling
+.pytest_cache/
+.ruff_cache/
 .coverage
-.cache
-nosetests.xml
-coverage.xml
 htmlcov/
+.mypy_cache/
 
-# Translations
-*.mo
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
 
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
+# Environment files
+.env
+.env.*
+!.env.example
 
-# Rope
-.ropeproject
-
-# Django stuff:
-*.log
-*.pot
-
-# Sphinx documentation
-docs/_build/
+# Docker
+docker-compose.override.yml

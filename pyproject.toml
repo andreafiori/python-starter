@@ -1,18 +1,63 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "myapp"
-version = "0.1.0"
-description = "Simple starter app"
-authors = [{ name = "Your Name" }]
-dependencies = []
+name = "python-starter"
+dynamic = ["version"]
+description = "Reusable Python project boilerplate"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # Add runtime dependencies here, e.g.:
+    # "requests>=2.32",
+]
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[project.scripts]
+# CLI entry point: `python-starter` once the package is installed
+python-starter = "python_starter.hello:main"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.0",
+    "pytest>=8.3",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/python_starter"]
+
+[tool.hatch.version]
+path = "src/python_starter/__init__.py"
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
 testpaths = ["tests"]
-addopts = "-ra"
+addopts = "-ra --cov=python_starter --cov-report=term-missing --cov-branch"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_lines = [
+    "if __name__ == .__main__.:",
+]
+
+[tool.mypy]
+files = ["src"]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+pretty = true
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
